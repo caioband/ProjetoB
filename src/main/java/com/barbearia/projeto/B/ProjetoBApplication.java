@@ -8,6 +8,8 @@ public class ProjetoBApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProjetoBApplication.class, args);
+		System.out.println("caeo gayyy");
 	}
+	
 
 }
