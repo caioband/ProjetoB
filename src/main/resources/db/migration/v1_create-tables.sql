@@ -10,4 +10,4 @@ create table usuarios
 (
     id serial primary key,
     nome varchar(40)
-)
+);
