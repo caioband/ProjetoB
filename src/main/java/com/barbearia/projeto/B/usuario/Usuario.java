@@ -18,6 +18,7 @@ public class Usuario {
 
     public Usuario(DadosCadastroUsuario dados) {
         this.nome = dados.nome();
+        System.out.println(this.getId());
     }
 
     @Id
@@ -26,19 +27,23 @@ public class Usuario {
     @NotBlank
     private String nome;
 
-    private int banido;
+    private boolean banido;
 
     public void atualizarInformacoes(@Valid DadosAtualizarUsuario dados){
         if(dados.nome() != null){
             this.nome = dados.nome();
-            this.banido = 0;
+            this.banido = false;
         }
     }
     public void banir(){
-        this.banido = 1;
+        this.banido = true;
     }
 
     public void desbanir(){
-        this.banido = 0;
+        this.banido = false;
+    }
+
+    public boolean getBanido() {
+        return this.banido;
     }
 }

@@ -1,2 +1,2 @@
-alter table usuarios add column banido smallint;
-update usuarios set banido = 0;
+alter table usuarios add column banido bool;
+update usuarios set banido = true;

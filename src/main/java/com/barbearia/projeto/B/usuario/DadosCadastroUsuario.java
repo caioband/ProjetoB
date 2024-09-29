@@ -1,5 +1,7 @@
 package com.barbearia.projeto.B.usuario;
 
-public record DadosCadastroUsuario(int id,String nome) {
+import jakarta.validation.constraints.NotBlank;
+
+public record DadosCadastroUsuario(@NotBlank String nome) {
 
 }
