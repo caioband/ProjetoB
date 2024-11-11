@@ -1,0 +1,17 @@
+C:\SpringJava\projeto-B\src\main\java\com\barbearia\projeto\B\Controllers\ProductsController.java
+C:\SpringJava\projeto-B\src\main\java\com\barbearia\projeto\B\Controllers\UsersController.java
+C:\SpringJava\projeto-B\src\main\java\com\barbearia\projeto\B\infra\TratadorDeErros.java
+C:\SpringJava\projeto-B\src\main\java\com\barbearia\projeto\B\produto\DadosAtualizarProduto.java
+C:\SpringJava\projeto-B\src\main\java\com\barbearia\projeto\B\produto\DadosCadastroProduto.java
+C:\SpringJava\projeto-B\src\main\java\com\barbearia\projeto\B\produto\DadosDetalhadosProduto.java
+C:\SpringJava\projeto-B\src\main\java\com\barbearia\projeto\B\produto\DadosListagemProduto.java
+C:\SpringJava\projeto-B\src\main\java\com\barbearia\projeto\B\produto\Produto.java
+C:\SpringJava\projeto-B\src\main\java\com\barbearia\projeto\B\produto\ProdutoRepository.java
+C:\SpringJava\projeto-B\src\main\java\com\barbearia\projeto\B\ProjetoBApplication.java
+C:\SpringJava\projeto-B\src\main\java\com\barbearia\projeto\B\usuario\DadosAtualizarUsuario.java
+C:\SpringJava\projeto-B\src\main\java\com\barbearia\projeto\B\usuario\DadosCadastroUsuario.java
+C:\SpringJava\projeto-B\src\main\java\com\barbearia\projeto\B\usuario\DadosDetalhadosUsuario.java
+C:\SpringJava\projeto-B\src\main\java\com\barbearia\projeto\B\usuario\DadosListagemUsuarios.java
+C:\SpringJava\projeto-B\src\main\java\com\barbearia\projeto\B\usuario\DadosLoginUsuario.java
+C:\SpringJava\projeto-B\src\main\java\com\barbearia\projeto\B\usuario\Usuario.java
+C:\SpringJava\projeto-B\src\main\java\com\barbearia\projeto\B\usuario\UsuarioRepository.java

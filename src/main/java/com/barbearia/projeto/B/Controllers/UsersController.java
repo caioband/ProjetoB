@@ -1,13 +1,17 @@
 package com.barbearia.projeto.B.Controllers;
 
 import com.barbearia.projeto.B.usuario.*;
+
+import com.google.gson.Gson;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -16,6 +20,8 @@ public class UsersController {
 
     @Autowired
     private UsuarioRepository rep;
+    @Autowired
+    private Gson gson;
 
     @PostMapping
     @Transactional
@@ -27,9 +33,19 @@ public class UsersController {
     }
 
     @GetMapping
-    public ResponseEntity<List<DadosListagemUsuarios>> listar(){
-       var lista = rep.findAllByBanidoFalse().stream().map(DadosListagemUsuarios::new).toList();
-       return ResponseEntity.ok(lista);
+    public ResponseEntity<String> listar(){
+       var lista = rep.findAll().stream().map(DadosListagemUsuarios::new).toList();
+        HashMap<String, JSONObject> mapa = new HashMap<String, JSONObject>();
+       for (int i=0; i < lista.size(); i++){
+           DadosListagemUsuarios index = lista.get(i);
+           JSONObject json = new JSONObject();
+           json.put("nome", index.nome());
+           json.put("id", index.id());
+           mapa.put(index.nome(), json);
+       }
+       System.out.println(mapa.toString());
+       String jsonString = gson.toJson(mapa);
+       return ResponseEntity.ok(jsonString);
     }
 
     @PutMapping
@@ -48,21 +64,19 @@ public class UsersController {
         return ResponseEntity.noContent().build();
     }
 
-    @DeleteMapping("banir/{id}")
+    @PostMapping(value = "/login")
     @Transactional
-    public ResponseEntity<Void> banir(@PathVariable Long id){
-        var usuario = rep.getReferenceById(id);
-        System.out.println(usuario.getId());
-        usuario.banir();
+    public ResponseEntity<DadosDetalhadosUsuario> Login(@RequestBody @Valid DadosLoginUsuario json){
+        try {
+            List<Usuario> queryResult = rep.GetUserByNameAndPass(json.nome(), json.senha());
+            System.out.println(queryResult.getFirst());
+            if(queryResult.getFirst() != null) {
+                return ResponseEntity.ok(new DadosDetalhadosUsuario(queryResult.getFirst()));
+            }
+        } catch (Exception e) {
+            return ResponseEntity.noContent().build();
+        }
         return ResponseEntity.noContent().build();
-    }
-
-    @PutMapping("desbanir/{id}")
-    @Transactional
-    public ResponseEntity<DadosDetalhadosUsuario> desbanir(@PathVariable Long id){
-        var usuario = rep.getReferenceById(id);
-        usuario.desbanir();
-        return ResponseEntity.ok(new DadosDetalhadosUsuario(usuario));
     }
 
     @GetMapping("/{id}")

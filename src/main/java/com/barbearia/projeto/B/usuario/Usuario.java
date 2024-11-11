@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
-import org.hibernate.validator.constraints.br.CPF;
+
 
 @Table(name = "usuarios")
 @Entity(name = "usuario")
@@ -18,6 +18,7 @@ public class Usuario {
 
     public Usuario(DadosCadastroUsuario dados) {
         this.nome = dados.nome();
+        this.senha = dados.senha();
         System.out.println(this.getId());
     }
 
@@ -26,24 +27,13 @@ public class Usuario {
     private long id;
     @NotBlank
     private String nome;
-
-    private boolean banido;
+    @NotBlank
+    private String senha;
 
     public void atualizarInformacoes(@Valid DadosAtualizarUsuario dados){
         if(dados.nome() != null){
             this.nome = dados.nome();
-            this.banido = false;
         }
     }
-    public void banir(){
-        this.banido = true;
-    }
 
-    public void desbanir(){
-        this.banido = false;
-    }
-
-    public boolean getBanido() {
-        return this.banido;
-    }
 }
